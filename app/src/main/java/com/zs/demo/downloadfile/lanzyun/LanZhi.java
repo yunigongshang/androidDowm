@@ -57,7 +57,7 @@ public class LanZhi {
 
     public static String getFileNameFromUrl(String url) {
         // 编写正则表达式
-        String regFileName = "(?<!/data : 'action=downprocess&)sign(.*?)(?=&)";//只需要sign的值
+        String regFileName = "(?<=var skdklds = ')(.*?)(?=';)";//只需要sign的值
         // 匹配当前正则表达式
         Matcher matcher = Pattern.compile(regFileName).matcher(url);
 //        // 定义当前文件的文件名称
@@ -68,7 +68,7 @@ public class LanZhi {
             fileName = matcher.group();
         }
         // 返回
-        fileName=fileName.substring(5);
+//        fileName=fileName.substring(5);
 
         return fileName;
     }
@@ -96,6 +96,7 @@ public class LanZhi {
                     .addHeader("Accept-Language", "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6")
                     .addHeader("Accept-Encoding", "gzip, deflate, br")
                     .addHeader("Cache-Control", "no-cache")
+                    .addHeader("Content-Length","111")
                     .addHeader("Cookie", "codelen=1; Hm_lvt_fb7e760e987871d56396999d288238a4=1676563278; uz_distinctid=1865af5695edf8-021e36e76dddb4-74525471-186a00-1865af5695f10cd; pc_ad1=1")
                     .addHeader("Host", "wwp.lanzoup.com")
                     .addHeader("Origin", "https://wwp.lanzoup.com")
@@ -105,7 +106,6 @@ public class LanZhi {
                     .addHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
                     .addHeader("X-Requested-With", "XMLHttpRequest")
                     .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203")
-//                .put(formBody)
                     .build();
 
             Response response = client.newCall(request).execute();
